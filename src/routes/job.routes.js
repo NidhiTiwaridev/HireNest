@@ -3,7 +3,9 @@ const router = express.Router();
 
 const {
   createJob,
-  getAllJobs,getMyJobs
+  getAllJobs,
+  getMyJobs,
+  getJobById,
 } = require("../controllers/job.controller");
 
 const authMiddleware = require("../middleware/auth.middleware");
@@ -14,6 +16,7 @@ router.post("/create",authMiddleware,  createJob);
 // get all jobs (public)
 router.get("/all", getAllJobs);
 router.get("/my", authMiddleware, getMyJobs);
+router.get("/:id", getJobById);
 router.get("/test", (req, res) => {
   res.send("JOB ROUTE WORKING");
 });
